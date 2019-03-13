@@ -1,0 +1,248 @@
+;==========================================================
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;==========================================================
+
+[colors]
+black   = #2d2d2d
+gray    = #747369
+silver  = #d3d0c8
+white   = #f2f0ec
+red     = #f2777a
+green   = #99cc99
+yellow  = #ffcc66
+blue    = #6699cc
+purple  = #cc99cc
+teal    = #66cccc
+
+background      = ${self.black}
+background-alt  = ${self.silver}
+foreground      = ${self.silver}
+foreground-alt  = ${self.black}
+primary         = ${self.blue}
+secondary       = ${self.purple}
+alert           = ${self.red}
+
+
+
+[bar/pri]
+monitor         = ${env:MONITOR:HDMI1}
+width           = 100%
+height          = 20
+fixed-center    = true
+; bottom          = true
+
+background      = ${colors.background}
+foreground      = ${colors.foreground}
+
+line-size       = 2
+line-color      = ${colors.background}
+
+border-size     = 0
+padding-left    = 0
+padding-right   = 1
+module-margin   = 1
+
+font-0  = "Source Code Pro Black:pixelsize=9;3"
+font-1  = "Font Awesome:pixelsize=10;3.5"
+font-2  = Ionicons:pixelsize=9
+
+modules-left    = i3
+modules-center  = player
+modules-right   = vol wifi eth bat date 
+
+tray-position   = right
+tray-padding    = 2
+tray-detached   = false
+cursor-click    = pointer
+tray-background = ${colors.background}
+
+locale          = pt_BR.UTF-8
+
+; override-redirect   = true
+; wm-restack          = i3
+
+
+
+[bar/sec]
+monitor         = ${env:MONITOR:eDP1}
+width           = 100%
+height          = 20
+fixed-center    = true
+; bottom          = true
+
+background      = ${colors.background}
+foreground      = ${colors.foreground}
+
+line-size       = 2
+line-color      = ${colors.background}
+
+border-size     = 0
+padding-left    = 0
+padding-right   = 1
+module-margin   = 1
+
+font-0  = "Source Code Pro Black:pixelsize=9;3"
+font-1  = "Font Awesome:pixelsize=10;3.5"
+font-2  = Ionicons:pixelsize=9
+
+modules-left    = i3
+modules-center  = 
+modules-right   = vol wifi eth bat date 
+
+cursor-click    = pointer
+
+locale          = pt_BR.UTF-8
+
+; override-redirect   = true
+; wm-restack          = i3
+
+
+
+[module/i3]
+type            = internal/i3
+format          = <label-state> <label-mode>
+index-sort      = true
+enable-scroll   = false
+pin-workspaces  = true
+; strip-wsnumbers = true
+
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-default = 
+
+label-mode              = %mode%
+label-mode-padding      = 1
+label-mode-foreground   = ${colors.black}
+label-mode-background   = ${colors.red}
+
+; focused = Active workspace on focused monitor
+label-focused               = %icon% %index%
+label-focused-background    = ${colors.blue}
+label-focused-foreground    = ${colors.black}
+label-focused-underline     = ${colors.blue}
+label-focused-padding       = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused             = %icon% %index%
+label-unfocused-padding     = 1
+
+; visible = Active workspace on unfocused monitor
+label-visible               = %icon% %index%
+label-visible-background    = ${colors.black}
+label-visible-underline     = ${colors.blue}
+label-visible-padding       = 1
+
+; urgent = Workspace with urgency hint set
+label-urgent                = %icon% %index%
+label-urgent-background     = ${colors.alert}
+label-urgent-padding        = 1
+
+
+
+[module/eth]
+type = internal/network
+interface = enp1s0
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-foreground = ${colors.green}
+label-connected = 
+
+format-disconnected = <label-disconnected>
+label-disconnected-foreground = ${colors.red}
+label-disconnected = 
+
+
+
+[module/wifi]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-foreground = ${colors.green}
+label-connected = %{A1:connman-gtk --no-icon:}%{A}
+
+format-disconnected = <label-disconnected>
+label-disconnected-foreground = ${colors.red}
+label-disconnected = %{A1:connman-gtk --no-icon:}%{A}
+
+
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = %a %e %b
+time = %Hh%M
+
+format-prefix-foreground = ${colors.foreground-alt}
+label = %date% %time%
+
+
+
+[module/bat]
+type        = internal/battery
+full-at     = 87
+battery     = BAT1
+adapter     = ACAD
+poll-interval   = 5
+
+format-discharging  = <ramp-capacity> <label-discharging>
+format-charging     = <label-charging> <ramp-capacity> 
+format-full         = <label-full>
+
+format-discharging-foreground   = ${colors.red}
+format-full-foreground          = ${colors.green}
+
+ramp-capacity-0     = 
+ramp-capacity-1     = 
+ramp-capacity-2     = 
+ramp-capacity-3     = 
+ramp-capacity-4     = 
+
+label-charging      = 
+label-discharging   = 
+label-full          = 
+
+
+
+[module/vol]
+type = internal/alsa
+master-soundcard    = default
+master-mixer        = Master
+; mapped              = true
+interval            = 2
+
+format-volume = <ramp-volume> <label-volume>
+format-muted = <label-muted>
+
+label-volume = %{A1:pavucontrol:}%percentage%%%{A}
+
+label-muted = %{A1:pavucontrol:}%{A}
+label-muted-foreground = ${colors.red}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+
+
+[module/player]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/player-mpris-tail.py
+tail = true
+
+; vim:ft=dosini

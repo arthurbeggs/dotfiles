@@ -1,0 +1,47 @@
+[user]
+    name = Arthur Matos
+    email = arthur@valeiros.com
+    username = arthurbeggs
+    signingkey = 0xBA4D01606EFCE903
+[core]
+    autocrlf = input
+    editor = nvim
+    excludesfile = ./global_gitignore
+    fileMode = false
+    pager = diff-so-fancy | less --tabs=4 -RFX
+[credential]
+    helper = cache --timeout=8640000
+[difftool]
+    prompt = false
+[difftool "meld"]
+    cmd = meld \"$LOCAL\" \"$REMOTE\"
+[merge]
+    tool = nvim
+[mergetool "meld"]
+    cmd = meld \"$LOCAL\" \"$MERGED\" \"$REMOTE\" --output \"$MERGED\"
+[mergetool "nvim"]
+    cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+[color]
+    ui = true
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+[color "diff"]
+    meta = yellow
+    frag = magenta bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[diff-so-fancy]
+    changeHunkIndicators = false
+    stripLeadingSymbols = false
+[alias]
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+[commit]
+    gpgsign = true
+[tag]
+    forceSignAnnotated = true
+

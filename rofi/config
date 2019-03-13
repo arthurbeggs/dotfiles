@@ -1,0 +1,10 @@
+rofi.font:      Source Code Pro Medium 9
+rofi.lines:     10
+rofi.width:     40
+rofi.bw:        0
+rofi.location:  6
+
+rofi.scroll-method: 1
+rofi.fixed-num-lines: false
+
+rofi.theme: /usr/share/rofi/themes/gruvbox-dark.rasi

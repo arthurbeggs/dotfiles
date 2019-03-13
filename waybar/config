@@ -1,0 +1,65 @@
+{
+    "layer": "top", // Waybar at top layer
+    "height": 20, // Waybar height
+    "modules-left": [ "sway/workspaces", "sway/mode" ],
+    "modules-center": [ "sway/window" ],
+    "modules-right": [ "custom/spotify", "pulseaudio", "network", "battery", "clock", "tray" ],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "format": "{icon}  {name}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "urgent": "",
+            "default": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"normal\">{}</span>"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{:%a, %e %b %Hh%M}"
+    },
+    "battery": {
+        "bat": "BAT1",
+        "adapter": "ACAD",
+        "states": {
+            "good": 100,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+   "network": {
+        "format-wifi": "{essid} ",
+        "format-ethernet": "",
+        "format-disconnected": "Disconnected ",
+        "on-click": "connman-gtk --no-icon"
+    },
+    "pulseaudio": {
+        "scroll-step": 2,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "hdmi": "HDMI",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/spotify": {
+        "format": "{}",
+        "max-length": 40,
+        "exec": "$HOME/.config/polybar/scripts/player-mpris-tail.py 2> /dev/null"
+    }
+}
