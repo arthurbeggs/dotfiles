@@ -9,34 +9,14 @@ ZSH=/usr/share/oh-my-zsh/
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="lambda-mod"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# Uncomment the following line to use hyphen-insensitive completion.
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="true"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -52,16 +32,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=( archlinux common-aliases git git-extras history sudo vagrant web-search wd )
+plugins=( archlinux common-aliases git git-extras history vagrant web-search wd )
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
@@ -84,6 +59,33 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 2 ]]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
+
+### Enable vi mode
+bindkey -v
+export KEYTIMEOUT=2
+function zle-line-init zle-keymap-select {
+    case $KEYMAP in
+        vicmd) print -n '\e]12;#cc241d\a';;
+        viins|main) print -n '\e]112;\a';;
+    esac
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# Use vim cli mode
+bindkey '^P' up-history
+bindkey '^N' down-history
+
+# backspace and ^h working even after
+# returning from command mode
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+
+# ctrl-w removed word backwards
+bindkey '^w' backward-kill-word
+
+# ctrl-r starts searching history backward
+bindkey '^r' history-incremental-search-backward
 
 ### Alias to edit with nvim
 alias e="nvim"
@@ -112,6 +114,9 @@ alias eway="nvim $XDG_CONFIG_HOME/waybar/config"
 ### Easily edit redshift
 alias ered="nvim $XDG_CONFIG_HOME/redshift/redshift.conf"
 
+### Update nvim plugins
+alias eupdate="nvim +PlugInstall +PlugUpdate +UpdateRemotePlugins +qa"
+
 ### Alias to view files with less
 alias v="less"
 
@@ -137,4 +142,9 @@ alias gh='ssh-add ~/.ssh/github/id_ed25519'
 
 ### Fetch and track all remote branches
 # alias superfetch='for remote in `git branch -r`; do git branch --track ${remote#origin/} $remote; done'
+
+
+
+### Syntax highlighting must be the last command
+source /usr/share/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

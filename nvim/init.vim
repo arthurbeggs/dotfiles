@@ -21,7 +21,6 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'sjl/gundo.vim'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 " Plug 'svermeulen/vim-easyclip'
 Plug 'tpope/vim-commentary'
@@ -34,9 +33,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'simnalamburt/vim-mundo'
+Plug 'suan/vim-instant-markdown'
 Plug 'vimwiki/vimwiki'
 Plug 'w0rp/ale'
-Plug 'Yggdroot/indentLine'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
@@ -250,11 +249,18 @@ nmap [w <C-W>W
 nmap ]g :tabn<cr>
 nmap [g :tabp<cr>
 
+" Escape Terminal Mode
+:tnoremap <Esc><Esc> <C-\><C-n>
+
+
 """"""""""""""""""""""""""""
 """ Plugin Configuration ###
 """"""""""""""""""""""""""""
 """ NerdTree toggle
 nnoremap <leader>tn :NERDTreeToggle<CR>
+
+""" Git Gutter
+autocmd BufWritePost * GitGutter
 
 """ Nvim GDB
 nmap <Leader>db :GdbStart gdb 
@@ -297,24 +303,13 @@ nmap <leader>gd <Plug>(ale_go_to_definition)<CR>
 let g:LanguageClient_serverCommands = {
   \ 'c': [ 'clangd' ],
   \ 'cpp': [ 'clangd' ],
-  \ 'tex': [ '/opt/texlab/texlab.jar' ],
   \ }
 
-let g:LanguageClient_serverStderr = '/tmp/clangd.stderr'
-nnoremap <leader>lcd :call LanguageClient#debugInfo()<CR>
-
-function LC_maps()
-   if has_key(g:LanguageClient_serverCommands, &filetype)
-     nnoremap <buffer> <silent> K :call
-LanguageClient#textDocument_hover()<cr>
-     nnoremap <buffer> <silent> gd :call
-LanguageClient#textDocument_definition()<CR>
-     nnoremap <buffer> <silent> <F2> :call
-LanguageClient#textDocument_rename()<CR>
-   endif
- endfunction
-
-autocmd FileType * call LC_maps()
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 call deoplete#custom#source('LanguageClient',
             \ 'min_pattern_length',
@@ -385,7 +380,7 @@ let g:gruvbox_contrast_dark = 'medium'
 """ C++ Enhanced Highlight
 let g:cpp_member_variable_highlight = 1
 
-""" IndentLine
-let g:indentLine_setColors = 0
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+""" Instant Markdown
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0
 
