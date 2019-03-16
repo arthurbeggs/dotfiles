@@ -38,8 +38,8 @@ xkb_symbols "arthur" {
     key <AC05> { [ g,               G,              eng,                    ENG ] };
     key <AC06> { [ h,               H,              hstroke,                Hstroke ] };
     key <AC07> { [ j,               J,              idiaeresis,             Idiaeresis ] };
-    key <AC08> { [ k,               K,              j,                      J ] };
-    key <AC09> { [ l,               L,              oe,                     OE ] };
+    key <AC08> { [ k,               K,              kra,                    OE ] };
+    key <AC09> { [ l,               L,              oslash,                 Ooblique ] };
     key <AC10> { [ semicolon,       colon,          paragraph,              degree ] };
     key <AC11> { [ apostrophe,      quotedbl,       dead_acute,             dead_diaeresis ] };
 
@@ -48,13 +48,18 @@ xkb_symbols "arthur" {
     key <AB02> { [ x,               X,              oe,                     OE ] };
     key <AB03> { [ c,               C,              copyright,              cent ] };
     key <AB04> { [ v,               V,              registered,             registered ] };
-    key <AB05> { [ b,               B,              b,                      B ] };
+    key <AB05> { [ b,               B,              horizconnector,         periodcentered ] };
     key <AB06> { [ n,               N,              ntilde,                 Ntilde ] };
     key <AB07> { [ m,               M,              mu,                     masculine ] };
     key <AB08> { [ comma,           less,           ccedilla,               Ccedilla ] };
     key <AB09> { [ period,          greater,        dead_abovedot,          dead_caron ] };
     key <AB10> { [ slash,           question,       questiondown,           dead_hook ] };
     key <AB11> { [ Shift_L,         Shift_L,        Shift_L,                Shift_L ] };
+
+    key <UP>   { [ Up,              Up,             Up,                     uparrow ] };
+    key <DOWN> { [ Down,            Down,           Down,                   downarrow ] };
+    key <LEFT> { [ Left,            Left,           Left,                   leftarrow ] };
+    key <RGHT> { [ Right,           Right,          Right,                  rightarrow ] };
 
     include "level3(ralt_switch)"
 };
