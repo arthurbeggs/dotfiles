@@ -1,0 +1,62 @@
+# Custom Keyboard
+# br-abnt2 + us + nodeadkeys
+
+keycode  41 =   asciitilde      grave          dead_tilde             dead_grave
+keycode   2 =   one             exclam         onesuperior            exclamdown
+keycode   3 =   two             at             twosuperior            dead_doubleacute
+keycode   4 =   three           numbersign     threesuperior          macron
+keycode   5 =   four            dollar         currency               sterling
+keycode   6 =   five            percent        euro                   cedilla
+keycode   7 =   six             asciicircum    dead_circumflex        onequarter
+keycode   8 =   seven           ampersand      U+031B                 onehalf
+keycode   9 =   eight           asterisk       dead_ogonek            threequarters
+keycode  10 =   nine            parenleft      U+2018                 dead_breve
+keycode  11 =   zero            parenright     U+2019                 U+030A
+keycode  12 =   minus           underscore     yen                    U+0323
+keycode  13 =   equal           plus           multiply               division
+
+keycode  16 =   q               Q              adiaeresis             Adiaeresis
+keycode  17 =   w               W              aring                  Aring
+keycode  18 =   e               E              eacute                 Eacute
+keycode  19 =   r               R              ediaeresis             Ediaeresis
+keycode  20 =   t               T              thorn                  THORN
+keycode  21 =   y               Y              udiaeresis             Udiaeresis
+keycode  22 =   u               U              uacute                 Uacute
+keycode  23 =   i               I              iacute                 Iacute
+keycode  24 =   o               O              oacute                 Oacute
+keycode  25 =   p               P              odiaeresis             Odiaeresis
+keycode  26 =   bracketleft     braceleft      guillemotleft          U+201C
+keycode  27 =   bracketright    braceright     guillemotright         U+201D
+keycode  43 =   backslash       bar            notsign                brokenbar
+
+keycode  58 =   Escape          Escape         Escape                 Escape
+keycode  30 =   a               A              aacute                 Aacute
+keycode  31 =   s               S              ssharp                 section
+keycode  32 =   d               D              eth                    ETH
+keycode  33 =   f               F              dstroke                ordfeminine
+keycode  34 =   g               G              eng                    ENG
+keycode  35 =   h               H              hstroke                Hstroke
+keycode  36 =   j               J              idiaeresis             Idiaeresis
+keycode  37 =   k               K              kra                    OE
+keycode  38 =   l               L              oslash                 Ooblique
+keycode  39 =   semicolon       colon          paragraph              degree
+keycode  40 =   apostrophe      quotedbl       dead_acute             dead_diaeresis
+
+keycode  86 =   Shift           Shift          Shift                  Shift
+keycode  44 =   z               Z              ae                     AE
+keycode  45 =   x               X              oe                     OE
+keycode  46 =   c               C              copyright              cent
+keycode  47 =   v               V              registered             registered
+keycode  48 =   b               B              U+23AF                 periodcentered
+keycode  49 =   n               N              ntilde                 Ntilde
+keycode  50 =   m               M              mu                     masculine
+keycode  51 =   comma           less           ccedilla               Ccedilla
+keycode  52 =   period          greater        U+0307                 dead_caron
+keycode  53 =   slash           question       questiondown           U+0309
+keycode  89 =   Shift           Shift          Shift                  Shift
+
+keycode 103 =   Up              Up             Up                     U+2191
+keycode 108 =   Down            Down           Down                   U+2193
+keycode 105 =   Left            Left           Left                   U+2190
+keycode 106 =   Right           Right          Right                  U+2192
+
