@@ -2,6 +2,7 @@ default partial
 xkb_symbols "arthur" {
 
     name[Group1]= "Brazilian Portuguese Custom ANSI";
+    key.type[Group1] = "EIGHT_LEVEL";
 
     key <TLDE> { [ asciitilde,      grave,          dead_tilde,             dead_grave ] };
     key <AE01> { [ 1,               exclam,         onesuperior,            exclamdown ] };
@@ -31,10 +32,10 @@ xkb_symbols "arthur" {
     key <AD12> { [ bracketright,    braceright,     guillemotright,         rightdoublequotemark ] };
     key <BKSL> { [ backslash,       bar,            notsign,                brokenbar ] };
 
-    key <AC01> { [ a,               A,              aacute,                 Aacute ] };
-    key <AC02> { [ s,               S,              ssharp,                 section ] };
-    key <AC03> { [ d,               D,              eth,                    ETH ] };
-    key <AC04> { [ f,               F,              dstroke,                ordfeminine ] };
+    key <AC01> { [ a,               A,              aacute,                 Aacute,             Left,   Left,   Left,   Left ] };
+    key <AC02> { [ s,               S,              ssharp,                 section,            Down,   Down,   Down,   Down ] };
+    key <AC03> { [ d,               D,              eth,                    ETH,                Up,     Up,     Up,     Up ] };
+    key <AC04> { [ f,               F,              dstroke,                ordfeminine,        Right,  Right,  Right,  Right ] };
     key <AC05> { [ g,               G,              eng,                    ENG ] };
     key <AC06> { [ h,               H,              hstroke,                Hstroke ] };
     key <AC07> { [ j,               J,              idiaeresis,             Idiaeresis ] };
@@ -56,10 +57,12 @@ xkb_symbols "arthur" {
     key <AB10> { [ slash,           question,       questiondown,           dead_hook ] };
     key <AB11> { [ Shift_L,         Shift_L,        Shift_L,                Shift_L ] };
 
-    key <UP>   { [ Up,              Up,             Up,                     uparrow ] };
-    key <DOWN> { [ Down,            Down,           Down,                   downarrow ] };
-    key <LEFT> { [ Left,            Left,           Left,                   leftarrow ] };
-    key <RGHT> { [ Right,           Right,          Right,                  rightarrow ] };
+    key <UP>   { [ Up,              Up,             uparrow,                uparrow ] };
+    key <DOWN> { [ Down,            Down,           downarrow,              downarrow ] };
+    key <LEFT> { [ Left,            Left,           leftarrow,              leftarrow ] };
+    key <RGHT> { [ Right,           Right,          rightarrow,             rightarrow ] };
 
     include "level3(ralt_switch)"
+    include "level5(rctrl_switch)"
+
 };
