@@ -32,6 +32,7 @@ xkb_symbols "arthur" {
     key <AD12> { [ bracketright,    braceright,     guillemotright,         rightdoublequotemark ] };
     key <BKSL> { [ backslash,       bar,            notsign,                brokenbar ] };
 
+    key <CAPS> { [ Escape,          Escape,         Escape,                 Escape ] };
     key <AC01> { [ a,               A,              aacute,                 Aacute,             Left,   Left,   Left,   Left ] };
     key <AC02> { [ s,               S,              ssharp,                 section,            Down,   Down,   Down,   Down ] };
     key <AC03> { [ d,               D,              eth,                    ETH,                Up,     Up,     Up,     Up ] };

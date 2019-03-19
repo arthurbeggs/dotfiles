@@ -17,7 +17,7 @@ workspace_layout        default
 
 # Window appearance
 default_border pixel    3
-hide_edge_borders       horizontal
+hide_edge_borders       smart
 
 # Mouse behaviour
 focus_follows_mouse     no
@@ -49,21 +49,21 @@ input 1739:10548:Synaptics_s3203 {
 input 2478:2:Tripplite_B015-000_R0.74_USB_to_PS2_adapter. {
    xkb_layout  custom
    xkb_model   pc105
-   xkb_options caps:escape
+   xkb_options kpdl:dot
    xkb_numlock enabled
 }
 
 input 1:1:AT_Translated_Set_2_keyboard {
    xkb_layout  custom
    xkb_model   pc105
-   xkb_options caps:escape
+   xkb_options kpdl:dot
    xkb_numlock enabled
 }
 
 input 16700:8467:Dell_KB216_Wired_Keyboard {
-    xkb_layout  custom
-    xkb_model   pc105
-    xkb_options caps:escape
+   xkb_layout  custom
+   xkb_model   pc105
+   xkb_options kpdl:dot
    xkb_numlock enabled
 }
 
@@ -105,6 +105,10 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+workspace $ws1  output HDMI-A-1 eDP-1
+workspace $ws2  output eDP-1
+workspace $ws10 output eDP-1
+
 
 #####################################
 ###       Window Behaviour        ###
@@ -118,6 +122,14 @@ for_window [class="Qt4-ssh-askpass"] floating enable, move position center
 for_window [class="Connman-gtk"] floating enable
 for_window [window_role="pop-up"] floating enable
 
+for_window [app_id="firefox"] move window to workspace $ws1
+for_window [class="Spotify"] move window to workspace $ws2
+for_window [app_id="telegram-desktop"] move window to workspace $ws2
+for_window [app_id="thunderbird"] move window to workspace $ws10
+
+client.focused          #8e607c #285577 #ffffff #2e9ef4 #8e607c
+client.unfocused        #282828 #222222 #888888 #292dde #282828
+client.focused_inactive #282828 #5f676a #ffffff #484e50 #282828
 
 #####################################
 ###            Autorun            ###
@@ -179,9 +191,6 @@ bindsym $mod+Down   focus down
 bindsym $mod+Up     focus up
 bindsym $mod+Right  focus right
 
-bindsym $mod+bracketleft    focus left
-bindsym $mod+bracketright   focus right
-
 # Move focused window
 bindsym $mod+Shift+h        move left
 bindsym $mod+Shift+j        move down
@@ -192,6 +201,9 @@ bindsym $mod+Shift+Left     move left
 bindsym $mod+Shift+Down     move down
 bindsym $mod+Shift+Up       move up
 bindsym $mod+Shift+Right    move right
+
+bindsym $mod+minus          scratchpad show
+bindsym $mod+Shift+minus    move to scratchpad
 
 # Split in horizontal orientation
 bindsym $mod+g split h
