@@ -48,9 +48,16 @@ export GPG_TTY=$(tty)
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   ### Enable Wayland support for GTK and QT if running Wayland
   export GDK_BACKEND=wayland
+  export CLUTTER_BACKEND=wayland
+  export GTK_THEME=Arc-Dark-solid
+
   export QT_QPA_PLATFORM=wayland-egl
+  export QT_WAYLAND_FORCE_DPI=physical
   export QT_SELECT=5
   export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+  run_keybase -g
+
   sway
 fi
 
@@ -73,8 +80,8 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # Use vim cli mode
-bindkey '^P' up-history
-bindkey '^N' down-history
+bindkey '^p' up-history
+bindkey '^n' down-history
 
 # backspace and ^h working even after
 # returning from command mode
@@ -128,6 +135,13 @@ alias sudo="sudo -H"
 
 ### Exit terminal
 alias :q="exit"
+alias q="exit"
+
+### Grep running processes
+alias psg="ps -aux | grep"
+
+### ls -lash alias
+alias lss="ls -lash"
 
 ### Generate SSH keys
 alias gened25519="ssh-keygen -t ed25519 -o -a 100"
