@@ -154,7 +154,6 @@ bindsym $mod+d          exec rofi -show run
 bindsym Mod1+Mod4+b     exec bitwarden-bin
 bindsym Mod1+Mod4+c     exec GDK_BACKEND=x11 chromium --incognito
 bindsym Mod1+Mod4+d     exec discord
-bindsym Mod1+Mod4+e     exec GDK_BACKEND=x11 thunar
 bindsym Mod1+Mod4+k     exec run_keybase
 bindsym Mod1+Mod4+m     exec GDK_BACKEND=x11 thunderbird
 bindsym Mod1+Mod4+n     exec connman-gtk
