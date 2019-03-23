@@ -15,6 +15,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'lervag/vimtex'
 Plug 'maximbaz/lightline-ale'
 Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -173,7 +174,8 @@ language en_US.UTF-8
 map <Leader>date "=strftime("%a, %d %b %Y")<CR>p
 
 " Insert current time
-map <Leader>time "=strftime("%H:%M:%S")<CR>p
+map <Leader>time "=strftime("%Hh%M")<CR>p
+map <Leader>ctime "=strftime("%H:%M:%S")<CR>p
 
 " Toggle wrap
 nnoremap <leader>tw :set wrap!<CR>
@@ -383,4 +385,24 @@ let g:cpp_member_variable_highlight = 1
 """ Instant Markdown
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
+
+""" VimWiki
+let g:vimwiki_list = [ { 'path': '~/projects/journal',
+                       \ 'diary_header': 'Journal Entries',
+                       \ 'diary_index': 'journal',
+                       \ 'diary_rel_path': '',
+                       \ 'auto_toc': 1
+                    \  },
+                    \  { 'path': '~/projects/wiki',
+                       \ 'diary_header': 'Wiki Journal',
+                       \ 'diary_rel_path': 'journal/',
+                       \ 'auto_toc': 1 } ]
+let g:vimwiki_auto_chdir = 1
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_hl_cb_checked = 1
+
+nmap <Leader>ewi 2<Plug>VimwikiIndex
+nmap <Leader>eji <Plug>VimwikiDiaryIndex<CR><Plug>VimwikiDiaryGenerateLinks
+nmap <Leader>ejt <Plug>VimwikiMakeDiaryNote
+nmap <Leader>eju <Plug>VimwikiDiaryGenerateLinks
 

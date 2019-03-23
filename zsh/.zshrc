@@ -56,8 +56,6 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   export QT_SELECT=5
   export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-  run_keybase -g
-
   sway
 fi
 
@@ -139,6 +137,9 @@ alias q="exit"
 
 ### Grep running processes
 alias psg="ps -aux | grep"
+
+### Edit brightness
+alias -g bkl=" | sudo tee /sys/class/backlight/intel_backlight/brightness"
 
 ### ls -lash alias
 alias lss="ls -lash"

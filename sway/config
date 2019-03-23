@@ -123,9 +123,10 @@ for_window [class="Connman-gtk"] floating enable
 for_window [window_role="pop-up"] floating enable
 
 for_window [app_id="firefox"] move window to workspace $ws1
+for_window [class="Firefox"] move window to workspace $ws1
 for_window [class="Spotify"] move window to workspace $ws2
 for_window [app_id="telegram-desktop"] move window to workspace $ws2
-for_window [app_id="thunderbird"] move window to workspace $ws10
+for_window [class="Thunderbird"] move window to workspace $ws10
 
 client.focused          #8e607c #285577 #ffffff #2e9ef4 #8e607c
 client.unfocused        #282828 #222222 #888888 #292dde #282828
@@ -155,13 +156,13 @@ bindsym Mod1+Mod4+c     exec GDK_BACKEND=x11 chromium --incognito
 bindsym Mod1+Mod4+d     exec discord
 bindsym Mod1+Mod4+e     exec GDK_BACKEND=x11 thunar
 bindsym Mod1+Mod4+k     exec run_keybase
-bindsym Mod1+Mod4+m     exec GDK_BACKEND=x11 thunderbird-beta
+bindsym Mod1+Mod4+m     exec GDK_BACKEND=x11 thunderbird
 bindsym Mod1+Mod4+n     exec connman-gtk
 bindsym Mod1+Mod4+r     exec termite -e ranger
 bindsym Mod1+Mod4+s     exec spotify
 bindsym Mod1+Mod4+t     exec telegram-desktop
 bindsym Mod1+Mod4+v     exec termite -e nvim
-bindsym Mod1+Mod4+w     exec GDK_BACKEND=x11 firefox
+bindsym Mod1+Mod4+w     exec firefox
 bindsym Mod1+Mod4+y     exec "killall -g redshift; redshift-gtk"
 
 bindsym --release Shift+Print exec grim -g "$(slurp)" - | wl-copy -t image/png
