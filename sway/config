@@ -67,6 +67,10 @@ input 16700:8467:Dell_KB216_Wired_Keyboard {
    xkb_numlock enabled
 }
 
+seat * {
+    hide_cursor 10000
+}
+
 #####################################
 ###            Outputs            ###
 #####################################
