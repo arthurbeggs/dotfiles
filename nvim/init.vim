@@ -63,6 +63,7 @@ filetype indent on
 set autoread
 
 let mapleader = ","
+let maplocalleader = "_"
 set timeoutlen=2000
 
 " See buffer list
@@ -254,6 +255,12 @@ nmap [g :tabp<cr>
 " Escape Terminal Mode
 :tnoremap <Esc><Esc> <C-\><C-n>
 
+" Replace all alias
+nnoremap S :%s//g<Left><Left>
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+
 
 """"""""""""""""""""""""""""
 """ Plugin Configuration ###
@@ -405,4 +412,23 @@ nmap <Leader>ewi 2<Plug>VimwikiIndex
 nmap <Leader>eji <Plug>VimwikiDiaryIndex<CR><Plug>VimwikiDiaryGenerateLinks
 nmap <Leader>ejt <Plug>VimwikiMakeDiaryNote
 nmap <Leader>eju <Plug>VimwikiDiaryGenerateLinks
+
+""" vimtex
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_view_method = 'mupdf'
+let g:vimtex_quickfix_mode = 0
+let g:vimtex_compiler_latexmk = {
+    \ 'backend' : 'nvim',
+    \ 'background' : 1,
+    \ 'build_dir' : '../build',
+    \ 'callback' : 1,
+    \ 'continuous' : 0,
+    \ 'executable' : 'latexmk',
+    \ 'options' : [
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
 
