@@ -32,7 +32,6 @@ export VISUAL="nvim"
 
 ### GnuPG & SSH
 eval $(ssh-agent -s -t 86400)
-eval $(gpg-agent)
 
 ###################################
 ###   XDG compliance for apps   ###

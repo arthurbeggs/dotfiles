@@ -36,7 +36,7 @@ HIST_STAMPS="dd.mm.yyyy"
 
 # Which plugins would you like to load?
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=( archlinux common-aliases git git-extras history vagrant web-search wd )
+plugins=( archlinux common-aliases fzf git git-extras history vagrant web-search wd )
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
@@ -44,6 +44,8 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 
 export GPG_TTY=$(tty)
+
+export PATH="$HOME"/.bin:"$PATH"
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   ### Enable Wayland support for GTK and QT if running Wayland
@@ -55,6 +57,15 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   export QT_WAYLAND_FORCE_DPI=physical
   export QT_SELECT=5
   export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+  ### Fix Java apps
+  export _JAVA_AWT_WM_NONREPARENTING=1
+
+  ### SDL support for Wayland
+  export SDL_VIDEODRIVER=wayland
+
+  ### Force Firefox to use Wayland
+  export MOZ_ENABLE_WAYLAND=1
 
   sway
 fi
@@ -90,7 +101,10 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 
 # ctrl-r starts searching history backward
-bindkey '^r' history-incremental-search-backward
+# bindkey '^r' history-incremental-search-backward
+
+### Alias to never remove root
+alias rm="rm --preserve-root"
 
 ### Alias to edit with nvim
 alias e="nvim"
@@ -138,11 +152,26 @@ alias q="exit"
 ### Grep running processes
 alias psg="ps -aux | grep"
 
+### Diff directories
+alias diffdir="diff -ENwbur "
+
 ### Edit brightness
 alias -g bkl=" | sudo tee /sys/class/backlight/intel_backlight/brightness"
 
 ### ls -lash alias
 alias lss="ls -lash"
+
+### Save clipboard image
+alias savepng="wl-paste -t image/png > "
+
+### Record screen
+alias record='wf-recorder -g "$(slurp)"'
+
+### Create Python venv
+alias venv_create="python -m venv .env"
+
+### Activate project venv
+alias venv_activate="source .env/bin/activate"
 
 ### Generate SSH keys
 alias gened25519="ssh-keygen -t ed25519 -o -a 100"
@@ -159,6 +188,9 @@ alias gh='ssh-add ~/.ssh/github/id_ed25519'
 # alias superfetch='for remote in `git branch -r`; do git branch --track ${remote#origin/} $remote; done'
 
 
+### Integrate fzf
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+source /usr/share/fzf/completion.zsh && source /usr/share/fzf/key-bindings.zsh
 
 ### Syntax highlighting must be the last command
 source /usr/share/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

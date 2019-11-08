@@ -9,13 +9,13 @@
         "format": "{icon}  {name}",
         "format-icons": {
             "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "6": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "9": "",
+            "10": "",
             "urgent": "",
-            "default": ""
+            "default": ""
         }
     },
     "sway/mode": {
@@ -60,6 +60,6 @@
     "custom/spotify": {
         "format": "{}",
         "max-length": 40,
-        "exec": "$HOME/.config/polybar/scripts/player-mpris-tail.py 2> /dev/null"
+        "exec": "$HOME/.config/waybar/custom/mediaplayer.py 2> /dev/null"
     }
 }
