@@ -1,0 +1,24 @@
+# Gnu Readline
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+set show-all-if-ambiguous on
+
+# Color files by types
+set colored-stats On
+# Append char to indicate type
+set visible-stats On
+# Mark symlinked directories
+set mark-symlinked-directories On
+# Color the common prefix
+set colored-completion-prefix On
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
+
+# Prepend 'sudo' if Alt+S is pressed
+"\es": "\C-asudo \C-e"
+
+# Send command to background and ignore its outputs
+"\e\C-b": "\C-e > /dev/null 2>&1 &\C-m"
+

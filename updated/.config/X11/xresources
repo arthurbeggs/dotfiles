@@ -1,0 +1,82 @@
+! colors gruvbox-dark
+*.color0:  rgb:28/28/28
+*.color1:  rgb:cc/24/1d
+*.color2:  rgb:98/97/1a
+*.color3:  rgb:d7/99/21
+*.color4:  rgb:45/85/88
+*.color5:  rgb:b1/62/86
+*.color6:  rgb:68/9d/6a
+*.color7:  rgb:a8/99/84
+*.color8:  rgb:92/83/74
+*.color9:  rgb:fb/49/34
+*.color10: rgb:b8/bb/26
+*.color11: rgb:fa/bd/2f
+*.color12: rgb:83/a5/98
+*.color13: rgb:d3/86/9b
+*.color14: rgb:8e/c0/7c
+*.color15: rgb:eb/db/b2
+*.foreground:  rgb:eb/db/b2
+*.background:  rgb:28/28/28
+*.borderColor: rgb:28/28/28
+*.alpha: 1.0
+*.font: Source Code Pro Semibold:size=10:antialias=true:autohint=true;
+
+! fontconfig
+Xft.hinting: true
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! xterm
+*XTerm*termName: xterm-256color
+*XTerm*vt100.backarrowKey: false
+*XTerm*vt100.bellIsUrgent: true
+*XTerm*vt100.colorInnerBorder: true
+*XTerm*vt100.decGraphicsID: vt340
+*XTerm*vt100.faceName: Source Code Pro Semibold:size=10
+*XTerm*vt100.fastScroll: true
+*XTerm*vt100.locale: true
+*XTerm*vt100.metaSendsEscape: true
+*XTerm*vt100.saveLines: 4096
+*XTerm*vt100.scrollKey: true
+*XTerm*vt100.scrollTtyOutput: false
+*XTerm*vt100.selectToClipboard: true
+*XTerm*vt100.showMissingGlyphs: true
+*XTerm*vt100.visualBell: true
+*XTerm*vt100.visualBellLine: true
+*XTerm*ttyModes: erase ^?
+
+
+! rxvt-unicode
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.inputMethod: ibus
+URxvt.preeditType: OverTheSpot
+
+URxvt.perl-ext-common: clipboard
+URxvt.scrollBar: false
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
+URxvt.secondaryScreen: true
+URxvt.secondaryScroll: true
+URxvt.skipScroll: true
+URxvt.saveLines: 1024
+URxvt.buffered: true
+URxvt.urgentOnBell: true
+URxvt.visualBell: false
+Rxvt.font: xft:Source Code Pro Semibold:size=10
+URxvt.letterSpace: -1
+URxvt*print-pipe: cat > /tmp/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+
+URxvt.clipboard.autocopy: true
+URxvt.keysym.C-M-C: builtin-string:
+URxvt.keysym.C-M-V: builtin-string:
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.tripleclickwords: true
+
+URxvt.keysym.C-v: builtin-string:
+

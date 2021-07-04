@@ -1,0 +1,4 @@
+{
+  "default.configured.audio.sink": { "name": "bluez_output.88_D0_39_9B_B7_1B.a2dp-sink" },
+  "default.configured.audio.source": { "name": "alsa_input.usb-GeneralPlus_USB_Audio_Device-00.mono-fallback" }
+}

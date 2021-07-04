@@ -1,0 +1,200 @@
+"" -- Suggested options --
+"""""""""""""""""""""""""""""
+""" General Configuration ###
+"""""""""""""""""""""""""""""
+" Disable vi compatibility
+set nocompatible
+
+" Disable modeline
+set nomodeline
+
+" Sets how many lines of history VIM has to remember
+" set history=256
+
+" Save undo history
+" set undofile
+" set undodir=~/.local/share/nvim/undo_history
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+let mapleader = " "
+let maplocalleader = ","
+set timeoutlen=2000
+
+" See buffer list
+nmap <leader>b :ls<CR>:b
+
+" Detect external changes in file when buffer gains focus
+" au FocusGained,BufEnter * :silent! !
+
+" Auto save buffer when focus is lost
+" au FocusLost,WinLeave * :silent! noautocmd w
+
+" Show a few lines below the current line
+set scrolloff=10
+" The same horizontally
+set sidescrolloff=5
+
+" Allow backspace to work over everything
+set backspace=indent,eol,start
+
+" Always show line numbers
+set number
+
+" Highlight cursor line
+set cursorline
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
+" Show matching brackets when text indicator is over them
+set showmatch
+set matchtime=0
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" hide buffers instead of closing
+set hidden
+
+" Enable syntax highlighting
+syntax enable
+
+" Set UTF-8 as standard encoding and en_US as the standard language
+set encoding=utf-8
+language en_US.UTF-8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" No linebreaks
+set nolinebreak
+
+" Visible whitespace with :set list
+"set list
+"set listchars=tab:▸\ ,eol:¬,space:·
+
+set ai "Auto indent
+set si "Smart indent
+set nowrap "Wrap lines
+
+" Do not insert comment leaders automatically
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Duplicate a line / selection and comment out the first
+nmap <Leader>ch Ypkgccj
+vmap <Leader>ch gcgvyPgvgc
+
+" Copy and paste to system clipboard with <Leader>p and <Leader>y
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+" Insert current date
+map <Leader>date "=strftime("%a, %d %b %Y")<CR>p
+
+" Insert current time
+map <Leader>time "=strftime("%Hh%M")<CR>p
+map <Leader>ctime "=strftime("%H:%M:%S")<CR>p
+
+" Toggle wrap
+nnoremap <leader>tw :set wrap!<CR>
+
+" Toggle hybrid line numbers
+nnoremap <leader>tl :set relativenumber!<CR>
+
+""" Highlight used TODO's comments
+" augroup vimrc_todo
+    " au!
+    " au Syntax * syn match MyTodo /\v<(FIXME|NOTE|TODO|XXX)/
+              " \ containedin=.*Comment,vimCommentTitle
+" augroup END
+" hi def link MyTodo Todo
+
+" Move a line of text using ALT+[jk] or Command+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Disable arrow keys
+noremap <Up>    <NOP>
+noremap <Down>  <NOP>
+noremap <Left>  <NOP>
+noremap <Right> <NOP>
+
+" Switch active window
+nmap ]w <C-W>w
+nmap [w <C-W>W
+
+" Switch active tab
+nmap ]g :tabn<cr>
+nmap [g :tabp<cr>
+
+" Escape Terminal Mode
+:tnoremap <Esc><Esc> <C-\><C-n>
+
+" Replace all alias
+nnoremap S :%s//g<Left><Left>
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+
+" Navigate through windows easily
+nnoremap <leader>w <C-w>
+
+
+
+
+
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+" Find more examples here: https://jb.gg/share-ideavimrc

@@ -1,6 +1,7 @@
 default partial
 xkb_symbols "arthur" {
 
+    include "latin"
     name[Group1]= "Brazilian Portuguese Custom ANSI";
     key.type[Group1] = "EIGHT_LEVEL";
 
@@ -33,10 +34,10 @@ xkb_symbols "arthur" {
     key <BKSL> { [ backslash,       bar,            notsign,                brokenbar ] };
 
     key <CAPS> { [ Escape,          Escape,         Escape,                 Escape ] };
-    key <AC01> { [ a,               A,              aacute,                 Aacute,             Left,   Left,   Left,   Left ] };
-    key <AC02> { [ s,               S,              ssharp,                 section,            Down,   Down,   Down,   Down ] };
-    key <AC03> { [ d,               D,              eth,                    ETH,                Up,     Up,     Up,     Up ] };
-    key <AC04> { [ f,               F,              dstroke,                ordfeminine,        Right,  Right,  Right,  Right ] };
+    key <AC01> { [ a,               A,              aacute,                 Aacute ] };
+    key <AC02> { [ s,               S,              ssharp,                 section ] };
+    key <AC03> { [ d,               D,              eth,                    ETH ] };
+    key <AC04> { [ f,               F,              dstroke,                ordfeminine ] };
     key <AC05> { [ g,               G,              eng,                    ENG ] };
     key <AC06> { [ h,               H,              hstroke,                Hstroke ] };
     key <AC07> { [ j,               J,              idiaeresis,             Idiaeresis ] };
@@ -56,6 +57,7 @@ xkb_symbols "arthur" {
     key <AB08> { [ comma,           less,           ccedilla,               Ccedilla ] };
     key <AB09> { [ period,          greater,        dead_abovedot,          dead_caron ] };
     key <AB10> { [ slash,           question,       questiondown,           dead_hook ] };
+    key <MENU> { [ Super_R,         Super_R,        Super_R,                Super_R ] };
     key <AB11> { [ Shift_L,         Shift_L,        Shift_L,                Shift_L ] };
 
     key <UP>   { [ Up,              Up,             uparrow,                uparrow ] };
@@ -64,6 +66,5 @@ xkb_symbols "arthur" {
     key <RGHT> { [ Right,           Right,          rightarrow,             rightarrow ] };
 
     include "level3(ralt_switch)"
-    include "level5(rctrl_switch)"
 
 };

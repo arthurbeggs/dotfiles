@@ -1,0 +1,326 @@
+#####################################
+###     General Configurations    ###
+#####################################
+
+# Default modifiers
+set $mod Mod4
+floating_modifier $mod
+
+# Font for window titles
+font pango: Source Code Pro Semibold, PowerlineSymbols, FontAwesome, Noto Color Emoji 8
+
+# Workspace orientation
+default_orientation     auto
+workspace_layout        default
+
+# Window appearance
+default_border pixel    3
+
+gaps inner              10
+gaps outer              -10
+smart_gaps              on
+
+# Mouse behaviour
+focus_follows_mouse     no
+mouse_warping           none
+
+
+#####################################
+###          Workspaces           ###
+#####################################
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+workspace $ws1  output HDMI1 eDP1
+workspace $ws2  output HDMI1
+workspace $ws3  output HDMI1
+workspace $ws4  output HDMI1
+workspace $ws5  output HDMI1
+workspace $ws6  output HDMI1
+workspace $ws7  output HDMI1
+workspace $ws8  output eDP1
+workspace $ws9  output eDP1
+workspace $ws10 output HDMI1
+
+#####################################
+###       Window Behaviour        ###
+#####################################
+
+for_window [window_role="pop-up"]       floating enable
+for_window [window_role="task_dialog"]  floating enable
+for_window [class="qt4-ssh-askpass"]    floating enable, move position center
+for_window [class="openssh-askpass"]    floating enable, move position center
+for_window [instance="urxvt-rofi"]      floating enable, move position center
+for_window [class="termite-float"]      floating enable, move position center
+for_window [class="Pavucontrol"]        floating enable, move position center
+for_window [class="Msgcompose"]         floating enable, move position center
+for_window [class="Blueman-manager"]    floating enable, move position center
+for_window [title=".*Compose message"]  floating enable, move position center
+for_window [class="dzen"]               floating enable, sticky enable, focus
+
+for_window [class="firefox"]            move window to workspace $ws1
+for_window [class="Spotify"]            move window to workspace $ws9
+for_window [class="termite-ncspot"]     move window to workspace $ws9
+for_window [class="termite-task"]       move window to workspace $ws9
+for_window [class="Thunderbird"]        move window to workspace $ws10
+for_window [class="TelegramDesktop"]    move window to workspace $ws10
+
+for_window [title="Android Emulator*"] floating enable, move position 1400px 100px
+
+client.background       #282828
+client.focused          #b16286 #282828 #ebdbb2 #b16286 #b16286
+client.focused_inactive #282828 #282828 #ebdbb2 #282828 #282828
+client.unfocused        #282828 #282828 #ebdbb2 #282828 #282828
+client.urgent           #cc241d #282828 #ebdbb2 #cc241d #cc241d
+
+force_display_urgency_hint 1000 ms
+
+
+#####################################
+###            Autorun            ###
+#####################################
+
+# Graphical Configuration
+exec_always --no-startup-id "xrandr | grep 'HDMI1 connected' && xrandr --output HDMI1 --auto --primary --output eDP1 --auto --mode 1280x720 --right-of HDMI1 ; pkill -KILL picom; picom -b --backend xr_glx_hybrid --vsync"
+
+# redshift
+exec_always --no-startup-id "$HOME/.local/bin/redshift_bright --run"
+
+# Notifications
+exec --no-startup-id "dunst"
+
+# Wallpaper
+exec --no-startup-id "betterlockscreen -w blur"
+
+# Locker
+exec --no-startup-id "xidlehook --not-when-fullscreen --not-when-audio --timer 600 'xset dpms force off' 'xset dpms force on' "
+
+# Hide mouse
+exec_always --no-startup-id "unclutter --ignore-scrolling"
+
+# Workspace 10 layout
+exec --no-startup-id "i3-msg 'workspace 10; append_layout /home/arthur/.local/share/i3/workspace-10.json'; sleep 1; i3-msg 'workspace 10; move workspace to output HDMI1; workspace 1'"
+
+# Blueman bluetooth manager for headphone connection
+exec --no-startup-id "blueman-applet"
+
+# If wacom tablet is connected, bind to leftmost monitor
+exec_always --no-startup-id "lsusb | grep Wacom && xsetwacom set 'Wacom One by Wacom S Pen stylus' MapToOutput HDMI1 && xsetwacom set 'Wacom One by Wacom S Pen eraser' MapToOutput HDMI1"
+
+# Start emacs server
+# exec --no-startup-id "emacs --daemon=instance1"
+
+
+#####################################
+###          Keybindings          ###
+#####################################
+
+### Application Execution
+bindsym $mod+F1             exec --no-startup-id "betterlockscreen -l dim"
+bindsym $mod+F4             exec --no-startup-id"$HOME/.local/bin/redshift_bright --dec"
+bindsym $mod+Shift+F4       exec --no-startup-id "$HOME/.local/bin/redshift_bright --inc"
+bindsym $mod+Return         exec termite
+bindsym $mod+Shift+Return   exec termite --class="termite-float"
+bindsym Mod1+Mod4+Return    exec urxvt # fallback
+bindsym Mod1+Mod4+a         exec android-studio
+bindsym Mod1+Mod4+c         exec chromium --incognito
+bindsym Mod1+Mod4+Shift+c   exec chromium
+bindsym $mod+d              exec rofi -matching glob -monitor "-1" -show run
+#bindsym Mod1+Mod4+d         exec "DRI_PRIME=1 discord"
+bindsym Mod1+Mod4+d         exec qutebrowser
+bindsym Mod1+Mod4+e         exec gnvim
+bindsym Mod1+Mod4+g         exec steam
+bindsym Mod1+Mod4+l         exec llpp
+bindsym Mod1+Mod4+Shift+m   exec --no-startup-id thunderbird
+bindsym Mod1+Mod4+m         exec --no-startup-id "GTK2_RC_FILES=/usr/share/themes/Arc-Dark-solid/gtk-2.0/gtkrc claws-mail  --alternate-config-dir /home/arthur/.local/share/claws-mail"
+bindsym Mod1+Mod4+n         exec --no-startup-id "silo silo://start#netflix"
+bindsym Mod1+Mod4+o         exec --no-startup-id obs
+#bindsym Mod1+Mod4+o         exec --no-startup-id "DRI_PRIME=1 obs"
+bindsym Mod1+Mod4+p         exec --no-startup-id "silo silo://start#primevideo"
+bindsym Mod1+Mod4+q         exec --no-startup-id qutebrowser
+bindsym Mod1+Mod4+r         exec termite -e ranger
+bindsym Mod1+Mod4+s         exec --no-startup-id spotify
+bindsym Mod1+Mod4+Shift+s   exec --no-startup-id termite --class="termite-ncspot" -e ncspot
+bindsym Mod1+Mod4+t         exec --no-startup-id telegram-desktop
+bindsym Mod1+Mod4+v         exec --no-startup-id vlc
+bindsym Mod1+Mod4+u         exec --no-startup-id termite --class="termite-task" -e taskwarrior-tui
+bindsym Mod1+Mod4+w         exec --no-startup-id firefox
+bindsym Mod1+Mod4+x         exec --no-startup-id xournalpp
+bindsym Mod1+Mod4+z         exec --no-startup-id "silo silo://start#whatsapp"
+bindsym $mod+w              exec rofi -matching glob -monitor "-1" -show window
+
+bindsym --release Shift+Print exec --no-startup-id "maim -s | xclip -selection clipboard -t image/png"
+bindsym --release Mod1+Print  exec --no-startup-id "maim | xclip -selection clipboard -t image/png"
+
+### Multimedia keys
+bindsym XF86AudioMute        exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+bindsym $mod+Print           exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+bindsym $mod+Scroll_Lock     exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +2%"
+bindsym $mod+Pause           exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +2%"
+
+bindsym XF86AudioPrev exec --no-startup-id "playerctl previous"
+bindsym $mod+F10      exec --no-startup-id "playerctl previous"
+bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause"
+bindsym $mod+F11      exec --no-startup-id "playerctl play-pause"
+bindsym XF86AudioNext exec --no-startup-id "playerctl next"
+bindsym $mod+F12      exec --no-startup-id "playerctl next"
+
+
+#####################################
+###        i3 Interactions        ###
+#####################################
+
+# Change window focus
+bindsym $mod+h              focus left
+bindsym $mod+j              focus down
+bindsym $mod+k              focus up
+bindsym $mod+l              focus right
+
+bindsym $mod+Left           focus left
+bindsym $mod+Down           focus down
+bindsym $mod+Up             focus up
+bindsym $mod+Right          focus right
+
+# Move focused window
+bindsym $mod+Shift+h        move left
+bindsym $mod+Shift+j        move down
+bindsym $mod+Shift+k        move up
+bindsym $mod+Shift+l        move right
+
+bindsym $mod+Shift+Left     move left
+bindsym $mod+Shift+Down     move down
+bindsym $mod+Shift+Up       move up
+bindsym $mod+Shift+Right    move right
+
+bindsym $mod+minus          scratchpad show
+bindsym $mod+Shift+minus    move to scratchpad
+
+# Split in horizontal orientation
+bindsym $mod+g split h
+
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Snter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Control+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Move focused workspace to other screens
+bindsym $mod+Shift+comma    move workspace to output left
+bindsym $mod+Shift+period   move workspace to output right
+
+# Close window
+bindsym $mod+Shift+q kill
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Power Control (Lock | Exit | Reboot | Shutdown)
+bindsym $mod+Shift+p exec "$XDG_DATA_HOME/rofi/scripts/power/rofi_power.sh"
+
+# Resize window
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+#####################################
+###              Bar              ###
+#####################################
+
+bar {
+    output            HDMI1
+    output            eDP1
+    status_command    i3status-rs ~/.config/i3status-rs/config.toml
+    position          bottom
+    mode              hide
+    workspace_buttons yes
+    tray_output       primary
+
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    font pango: Source Code Pro Semibold, PowerlineSymbols, FontAwesome 10
+
+                           #borda   fundo  letra
+    colors {
+        background #282828
+        statusline #ebdbb2
+        separator  #ebdbb2
+
+        focused_workspace  #83a598 #83a598 #282828
+        active_workspace   #83a598 #282828 #83a598
+        inactive_workspace #282828 #282828 #83a598
+        urgent_workspace   #b16286 #b16286 #282828
+    }
+}
+

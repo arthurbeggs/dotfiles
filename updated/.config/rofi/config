@@ -1,0 +1,15 @@
+rofi.font:      Source Code Pro Medium 9
+rofi.lines:     10
+rofi.width:     40
+rofi.bw:        0
+rofi.location:  2
+rofi.monitor:   -4
+
+rofi.scroll-method: 1
+rofi.fixed-num-lines: false
+
+rofi.theme: /usr/share/rofi/themes/gruvbox-dark.rasi
+
+rofi.terminal:          xterm
+rofi.run-command:       bash -c {cmd}
+rofi.run-shell-command: {terminal} -class "XTerm-rofi" -e bash -c "{cmd}; read -n 1 -s"

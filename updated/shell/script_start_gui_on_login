@@ -1,0 +1,8 @@
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec xinit -- vt1 -keeptty > /tmp/xorg_session.log 2>&1
+fi
+
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 2 ]]; then
+  sway
+fi
+

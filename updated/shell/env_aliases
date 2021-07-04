@@ -1,0 +1,38 @@
+alias diff='diff --color=auto '
+alias grep='grep --color=auto '
+alias ip='ip -color=auto '
+alias ls='ls -lash --color=auto '
+alias sudo='sudo '
+
+# Never remove root
+alias rm='rm --preserve-root'
+
+# nvim
+alias e='nvim '
+alias se='sudo nvim '
+alias nivm='nvim '
+alias nano='nvim '
+
+# Edit config files
+alias ei3="nvim $XDG_CONFIG_HOME/i3/config"
+alias esh="nvim $HOME/.bashrc"
+alias envim="nvim $XDG_CONFIG_HOME/nvim/init.vim"
+alias etmux="nvim $XDG_CONFIG_HOME/tmux/tmux.conf"
+
+# Journals
+alias echange="nvim /data/CHANGELOG.md"
+
+# Moving up
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# Exit terminal
+alias :q="exit"
+alias q="exit"
+
+# Generate SSH keys
+alias gened25519="ssh-keygen -t ed25519 -o -a 100"
+alias genrsa="ssh-keygen -t rsa -b 4096 -o -a 100"
+

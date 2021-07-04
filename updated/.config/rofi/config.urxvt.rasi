@@ -1,0 +1,17 @@
+configuration {
+	width: 40;
+	lines: 10;
+	font: "Source Code Pro Medium 9";
+	bw: 0;
+	location: 2;
+	fixed-num-lines: false;
+
+	terminal: "urxvt";
+	run-command: "{cmd}";
+	run-shell-command: "{terminal} -name "urxvt-rofi" -e bash -i -c \"{cmd}; read -n 1 -s\"";
+
+	scroll-method: 1;
+	kb-accept-custom: "";
+	kb-accept-alt: "Control+Return,Shift+Return";
+	theme: "/usr/share/rofi/themes/gruvbox-dark.rasi";
+}

@@ -1,0 +1,9 @@
+{
+    "languageserver": {
+        "kotlin": {
+            "command": "~/.local/share/lsp/kotlin/server/bin/kotlin-language-server",
+            "filetypes": ["kotlin"]
+        }
+    }
+}
+

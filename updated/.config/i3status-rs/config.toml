@@ -1,0 +1,67 @@
+[theme]
+name = "gruvbox-dark"
+[theme.overrides]
+separator = ""
+good_bg = "#b8bb26"
+good_fg = "#282828"
+
+[icons]
+name = "awesome"
+[icons.overrides]
+
+[[block]]
+block = "music"
+buttons = ["play"]
+max_width = 40
+marquee = true
+marquee_interval = 10
+marquee_speed = 0.5
+dynamic_width = true
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "{barchart} {utilization}"
+
+[[block]]
+block = "memory"
+format_mem = "~{mem_used;G}+{cached;G} /{mem_total;G}({mem_total_used_percents} )"
+format_swap = "{swap_used;M}/{swap_total;G}({swap_used_percents})"
+display_type = "memory"
+icons = true
+clickable = true
+interval = 5
+warning_mem = 80
+warning_swap = 10
+critical_mem = 95
+critical_swap = 25
+
+#[[block]]
+#block = "bluetooth"
+#mac = "88:D0:39:9B:B7:1B"
+#label = " Q20"
+
+[[block]]
+block = "sound"
+step_width = 2
+on_click = "pavucontrol"
+format = "{volume} {output_name}"
+[block.mappings]
+"alsa_output.pci-0000_00_1b.0.analog-stereo" = ""
+"alsa_output.usb-Sony_Interactive_Entertainment_Wireless_Controller-00.analog-stereo" = ""
+"alsa_output.usb-Sony_Interactive_Entertainment_Wireless_Controller-00.pro-output-0" = ""
+"alsa_output.usb-GeneralPlus_USB_Audio_Device-00.iec958-stereo" = ""
+"alsa_output.pci-0000_00_03.0.hdmi-stereo" = ""
+"bluez_output.88_D0_39_9B_B7_1B.a2dp-sink" = ""
+
+[[block]]
+block = "battery"
+device = "BAT1"
+driver = "upower"
+format = "{percentage}%"
+
+[[block]]
+block = "time"
+format = "%F - %a - %T"
+interval = 1
+

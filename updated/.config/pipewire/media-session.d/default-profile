@@ -1,0 +1,6 @@
+{
+  "default.profile.alsa_card.usb-Sony_Interactive_Entertainment_Wireless_Controller-00": { "name": "pro-audio" },
+  "default.profile.alsa_card.usb-GeneralPlus_USB_Audio_Device-00": { "name": "output:analog-stereo+input:mono-fallback" },
+  "default.profile.alsa_card.usb-Sonix_Technology_Co.__Ltd._REDRAGON_Live_Camera_SN0001-02": { "name": "off" },
+  "default.profile.alsa_card.pci-0000:00:03.0": { "name": "output:hdmi-stereo" }
+}

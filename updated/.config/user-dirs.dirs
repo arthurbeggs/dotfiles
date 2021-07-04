@@ -1,0 +1,11 @@
+# Same as /data/common/shell/xdg_user_base_dirs
+
+XDG_DESKTOP_DIR="$HOME/desktop"
+XDG_DOWNLOAD_DIR="$HOME/downloads"
+XDG_TEMPLATES_DIR="$HOME/documents/templates"
+XDG_PUBLICSHARE_DIR="$HOME/public"
+XDG_DOCUMENTS_DIR="$HOME/documents"
+XDG_MUSIC_DIR="$HOME/documents/music"
+XDG_PICTURES_DIR="$HOME/documents/images"
+XDG_VIDEOS_DIR="$HOME/documents/videos"
+
