@@ -10,6 +10,3 @@ export PATH=$HOME/.local/share/bin:$PATH
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-# Start xorg/i3 after login in tty1 or wayland/sway in tty2
-[[ -f /data/common/shell/script_start_gui_on_login ]] && . /data/common/shell/script_start_gui_on_login
-

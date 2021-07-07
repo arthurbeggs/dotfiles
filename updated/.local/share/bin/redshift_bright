@@ -1,0 +1,109 @@
+#!/usr/bin/env python
+
+import argparse
+import pathlib
+import re
+import subprocess
+from typing import List
+
+
+def read_config(config_path: str) -> List[str]:
+    config_lines: List[str] = []
+    try:
+        with pathlib.Path(config_path).expanduser().open(mode='r') as conf:
+            config_lines = conf.readlines()
+    except FileNotFoundError:
+        pass
+    finally:
+        return config_lines
+
+
+def write_config(config_path: str, config_lines: List[str]) -> None:
+    with pathlib.Path(config_path).expanduser().open(mode='w') as conf:
+        conf.writelines(config_lines)
+
+
+def modify_brightness_value(brightness: float, operation: str) -> float:
+    new_brightness: float
+    if operation == 'inc':
+        new_brightness = brightness + 0.1
+        if new_brightness > 1.0:
+            new_brightness = 1.0
+    else:
+        new_brightness = brightness - 0.1
+        if new_brightness < 0.1:
+            new_brightness = 0.1
+
+    return new_brightness
+
+
+def change_config(config_lines: List[str], op: str) -> List[str]:
+    line_re = re.compile(r'(^brightness\s*=\s*)')
+    value_re = re.compile(r'(\d+\.\d+|\d+)')
+    brightness: float = 0.5
+    new_config: List[str] = []
+    for line in config_lines:
+        if re.search(line_re, line):
+            read_value = re.search(value_re, line)
+            if read_value:
+                brightness = float(read_value.groups()[0])
+            new_brightness: float = modify_brightness_value(brightness, op)
+            line = 'brightness={:.1f}\n'.format(new_brightness)
+        new_config.append(line)
+
+    return new_config
+
+
+def main(config_path: str, operation: str) -> None:
+    if operation == 'run':
+        return
+    config_lines = read_config(config_path)
+    if not config_lines:
+        return
+    new_config = change_config(config_lines, operation)
+    write_config(config_path, new_config)
+    return
+
+
+if __name__ == '__main__':
+    config_path: str = '~/.config/redshift/redshift.conf'
+
+    cli_parser = argparse.ArgumentParser(
+        description='Modify Redshift brightness.',
+    )
+
+    cmd_group = cli_parser.add_mutually_exclusive_group(required='True')
+    cmd_group.add_argument(
+        '--run',
+        help='Run redshift.',
+        action='store_true',
+    )
+    cmd_group.add_argument(
+        '--inc',
+        help='Increase brightness by 0.1.',
+        action='store_true',
+    )
+    cmd_group.add_argument(
+        '--dec',
+        help='Decrease brightness by 0.1.',
+        action='store_true',
+    )
+
+    args = cli_parser.parse_args()
+    if args.run:
+        operation = 'run'
+    elif args.inc:
+        operation = 'inc'
+    else:
+        operation = 'dec'
+
+    main(config_path, operation)
+
+    subprocess.Popen(
+        'set -m; pkill -KILL redshift; redshift -x; redshift &! ; exit',
+        shell=True,
+        stdin=subprocess.DEVNULL,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+

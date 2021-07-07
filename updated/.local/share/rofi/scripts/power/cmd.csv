@@ -1,0 +1,5 @@
+Power Control: Cancel,exit
+Power Control: Lock,betterlockscreen -l dim
+Power Control: Exit i3,i3-msg exit
+Power Control: Reboot,reboot
+Power Control: Shutdown,poweroff

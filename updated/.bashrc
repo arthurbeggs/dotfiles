@@ -45,9 +45,7 @@ ps_user() {
     else
         __output="${YELLOW}${USER}"
     fi
-    if [[ ${HOSTNAME} != "caterpillar" ]]; then
-        __output="${OUTPUT}@${YELLOW}${HOST}"
-    fi
+    __output="${__output}@${YELLOW}${HOSTNAME}"
     echo ${__output}
 }
 
@@ -57,5 +55,3 @@ ps_status() {
 
 PS1="${BOLD}\$(ps_status) \$(ps_user) ${MAGENTA}[\w]${BLUE}\$(__git_ps1 ' (%s)') \n»» ${RESET}"
 
-
-export QSYS_ROOTDIR="/home/arthur/.cache/yay/quartus-free/pkg/quartus-free/opt/altera/18.1/quartus/sopc_builder/bin"
